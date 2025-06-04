@@ -1,1 +1,116 @@
-<center>test23
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Goofy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:600,700|Karla:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Karla', Arial, sans-serif;
+    }
+    .profile-card {
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 6px 32px #9c85cd44, 0 1.5px 8px #0001;
+      max-width: 370px;
+      width: 98vw;
+      padding: 2.4em 2em 2em 2em;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin: 2em auto;
+      animation: card-fade-in .7s cubic-bezier(.77,0,.175,1) 1;
+    }
+    @keyframes card-fade-in {
+      from { opacity:0; transform: translateY(20px);}
+      to { opacity:1; transform: none;}
+    }
+    .avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      border: 5px solid #a18cd1;
+      object-fit: cover;
+      margin-top: -80px;
+      box-shadow: 0 3px 18px #a18cd188;
+      background: #eee;
+    }
+    .profile-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #6c36c4;
+      margin-top: 1.1em;
+      margin-bottom: .45em;
+    }
+    .profile-desc {
+      color: #666;
+      font-size: 1.08em;
+      margin-bottom: 1.5em;
+      margin-top: 0;
+      line-height: 1.8em;
+      font-family: 'Karla', Arial, sans-serif;
+    }
+    .profile-section {
+      margin-bottom: 1.2em;
+      border-radius: 12px;
+      background: #f7f6fd;
+      padding: 1em 1em .6em 1em;
+      box-shadow: 0 1.5px 6px #a18cd120;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1em;
+    }
+    .profile-section b {
+      font-weight: 600;
+      color: #8b47c7;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1em;
+    }
+    .stars {
+      text-align: center;
+      color: #ffd600;
+      margin-top: 1.2em;
+      letter-spacing: 2.5px;
+      font-size: 1.45em;
+      text-shadow: 0 2px 8px #a18cd140;
+    }
+    /* Responsive */
+    @media (max-width: 450px) {
+      .profile-card {
+        padding: 1em 3vw 2em 3vw;
+      }
+      .avatar {
+        width: 88px; height: 88px;
+      }
+      .profile-title {
+        font-size: 1.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <img src="https://xatimg.com/image/jLe72UxeKdSR.jpg" class="avatar" alt="Avatar">
+    <div class="profile-title">Goofy</div>
+    <div class="profile-desc">Describe yourself here!</div>
+    <div class="profile-section">
+      <b>Relationship:</b> Add a friend!
+    </div>
+    <div class="profile-section">
+      <b>Location:</b> Your location
+    </div>
+    <div class="stars">★ ★ ★ ★ ★</div>
+  </div>
+</body>
+</html>
