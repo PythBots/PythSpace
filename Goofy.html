@@ -38,35 +38,35 @@ function isSpriteSheet(img){return img.naturalWidth>img.naturalHeight&&img.natur
 function animateAvatar(){const img=document.getElementById('avatarImg');const canvas=document.getElementById('avatarCanvas');if(!img||!canvas)return;const url=img.getAttribute('data-avatar');img.onload=function(){if(/\.gif$/i.test(url)||(img.naturalHeight===img.naturalWidth&&img.naturalHeight<=1758)){img.style.display='block';canvas.style.display='none';if(window.avatarTimer)clearInterval(window.avatarTimer)}else if(isSpriteSheet(img)){img.style.display='none';canvas.style.display='block';const frameSize=img.naturalHeight;const frameCount=img.naturalWidth/frameSize;let frame=0;const ctx=canvas.getContext('2d');if(window.avatarTimer)clearInterval(window.avatarTimer);function drawFrame(){ctx.clearRect(0,0,120,120);ctx.drawImage(img,frame*frameSize,0,frameSize,frameSize,0,0,120,120);frame=(frame+1)%frameCount}drawFrame();window.avatarTimer=setInterval(drawFrame,140)}else{img.style.display='block';canvas.style.display='none';if(window.avatarTimer)clearInterval(window.avatarTimer)}};img.src=url}
 animateAvatar();
 
-function updateAvatar() {
+function updateProfile() {
     fetch('https://pythbots.com/api/userinfo.php?user=Goofy2')
         .then(r => r.json())
         .then(data => {
+            console.log('API Response:', data);
+            
             const img = document.getElementById('avatarImg');
             if (data.avatar) {
-                const parts = data.avatar.split('#');
-                let realUrl = '';
-                if (/^\d+$/.test(parts[0])) {
-                    realUrl = 'https://xat.com/web_gear/chat/av/' + parts[0] + '.png';
-                } else if (parts[0].startsWith('http')) {
-                    realUrl = parts[0];
-                } else {
-                    realUrl = 'https://xat.com/web_gear/chat/av/0.png';
-                }
-                img.setAttribute('data-avatar', realUrl);
+                // Split by # and take first URL
+                const avatarUrl = data.avatar.split('#')[0];
+                console.log('Avatar URL:', avatarUrl);
+                img.setAttribute('data-avatar', avatarUrl);
                 animateAvatar();
             }
             
-            if (data.is_online) {
+            
+            // Update status color based on is_online
+            console.log('Online status:', data.is_online);
+            if (data.is_online === true) {
                 document.documentElement.style.setProperty('--status-color', '#2bf45f');
             } else {
                 document.documentElement.style.setProperty('--status-color', '#808080');
             }
             
-        });
+        })
+        .catch(err => console.error('API error:', err));
 }
-updateAvatar();
-setInterval(updateAvatar, 30000);
+updateProfile();
+setInterval(updateProfile, 30000);
 
 </script>
 </body></html>
