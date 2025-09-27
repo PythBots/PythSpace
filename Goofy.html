@@ -39,7 +39,7 @@ function animateAvatar(){const img=document.getElementById('avatarImg');const ca
 animateAvatar();
 
 function updateProfile() {
-    fetch('https://pythbots.com/api/userinfo.php?user=')
+    fetch('https://pythbots.com/api/userinfo.php?user=Goofy')
         .then(r => r.json())
         .then(data => {
             console.log('API Response:', data);
