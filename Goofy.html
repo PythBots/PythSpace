@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8">
-<title>Goofy</title>
+<title>Test</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
 <style>
-body{background:linear-gradient(135deg,#48dbfb,#0abde3);min-height:100vh;margin:0;display:flex;align-items:center;justify-content:center;font-family:'Roboto',sans-serif}
-.card{width:380px;max-width:95vw;background:#ffffff;border-radius:16px;padding:0 25px 30px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);color:#2c3e50}
-.banner{width:100%;max-width:380px;height:120px;object-fit:cover;border-radius:16px 16px 0 0;margin-bottom:-50px}
-.avatar-container{width:100px;height:100px;border-radius:50%;border:5px solid #ffffff;margin:0 auto;position:relative;top:-50px;box-shadow:0 5px 20px rgba(0,0,0,0.2);overflow:hidden}
-.avatar-img,.avatar-canvas{width:100px;height:100px;border-radius:50%;object-fit:cover;position:absolute;top:0;left:0}
-.avatar-canvas{display:none}
-.title{font-size:2em;font-weight:700;color:#0abde3;margin:-20px 0 10px}
-.desc{opacity:0.7;margin-bottom:20px}
+:root{--theme-color:#dd8448}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card{position:relative;padding:2px;border-radius:24px;background:linear-gradient(-30deg,var(--theme-color)33,transparent,var(--theme-color)33)}
+.inner{position:relative;width:400px;height:550px;border-radius:24px;border:2px solid var(--theme-color);background:#1a1a1a;padding:40px;display:flex;flex-direction:column;align-items:center}
+.glow{position:absolute;inset:0;border-radius:24px;border:2px solid var(--theme-color);opacity:0.6;filter:blur(4px);pointer-events:none}
+.avatar{width:120px;height:120px;border-radius:50%;border:3px solid var(--theme-color);margin:20px 0;overflow:hidden;position:relative;box-shadow:0 0 30px var(--theme-color)66}
+.avatar img,.avatar canvas{width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0}
+.avatar canvas{display:none}
+.title{font-size:2.5em;font-weight:700;margin:10px 0;background:linear-gradient(135deg,var(--theme-color),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.desc{opacity:0.7;text-align:center;margin:10px 0}
 .friends{margin:20px 0}
-.info{background:rgba(0,0,0,0.05);padding:12px;border-radius:10px;margin:10px 0;text-align:left}
-.stars{font-size:1.5em;margin-top:15px;letter-spacing:3px}
 </style>
 </head><body>
 <div class="card">
-  <img src="https://xatimg.com/image/TGrnDceu0BiF.gif" class="banner">
-  <div class="avatar-container">
-    <img class="avatar-img" id="avatarImg" src="https://xatimg.com/image/jLe72UxeKdSR.jpg" data-avatar="https://xatimg.com/image/jLe72UxeKdSR.jpg">
-    <canvas class="avatar-canvas" id="avatarCanvas" width="100" height="100"></canvas>
+  <div class="inner">
+    <div class="glow"></div>
+    <img src="https://xatimg.com/image/TGrnDceu0BiF.gif" style="width:100%;height:120px;object-fit:cover;border-radius:16px;margin-bottom:-60px">
+    <div class="avatar" id="avatarContainer">
+      <img id="avatarImg" src="https://xatimg.com/image/jLe72UxeKdSR.jpg" data-avatar="https://xatimg.com/image/jLe72UxeKdSR.jpg">
+      <canvas id="avatarCanvas" width="120" height="120"></canvas>
+    </div>
+    <div class="title">Test</div>
+    <div class="desc">Test2</div>
+    <div class="friends"><a href="https://xat.me/Test3" target="_blank" style="margin:0 10px;font-size:1.8em;text-decoration:none">💜</a></div>
   </div>
-  <div class="title">Goofy</div>
-  <div class="desc">Describe yourself here!</div>
-  <div class="friends"><a href="https://xat.me/friend1" target="_blank" style="margin:0 8px;font-size:1.5em;text-decoration:none">💜</a></div>
-  <div class="info"><b>Location:</b> Your location</div>
-  <div class="info"><b>User ID:</b> 221192</div>
-  <div class="stars">❤️ ❤️ ❤️</div>
 </div>
 <script>
 function isSpriteSheet(img){return img.naturalWidth>img.naturalHeight&&img.naturalWidth%img.naturalHeight===0}
@@ -40,24 +41,27 @@ function animateAvatar(){
   const url=img.getAttribute('data-avatar');
   img.onload=function(){
     if(/\.gif$/i.test(url)||(img.naturalHeight===img.naturalWidth&&img.naturalHeight<=1758)){
-      img.style.display='block';canvas.style.display='none';
+      img.style.display='block';
+      canvas.style.display='none';
       if(window.avatarTimer)clearInterval(window.avatarTimer);
     }else if(isSpriteSheet(img)){
-      img.style.display='none';canvas.style.display='block';
+      img.style.display='none';
+      canvas.style.display='block';
       const frameSize=img.naturalHeight;
       const frameCount=img.naturalWidth/frameSize;
       let frame=0;
       const ctx=canvas.getContext('2d');
       if(window.avatarTimer)clearInterval(window.avatarTimer);
       function drawFrame(){
-        ctx.clearRect(0,0,100,100);
-        ctx.drawImage(img,frame*frameSize,0,frameSize,frameSize,0,0,100,100);
+        ctx.clearRect(0,0,120,120);
+        ctx.drawImage(img,frame*frameSize,0,frameSize,frameSize,0,0,120,120);
         frame=(frame+1)%frameCount;
       }
       drawFrame();
       window.avatarTimer=setInterval(drawFrame,140);
     }else{
-      img.style.display='block';canvas.style.display='none';
+      img.style.display='block';
+      canvas.style.display='none';
       if(window.avatarTimer)clearInterval(window.avatarTimer);
     }
   };
