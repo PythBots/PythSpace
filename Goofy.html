@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{--theme-color:#dd8448}
+:root{--theme-color:#523928}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.card{position:relative;padding:2px;border-radius:24px;background:linear-gradient(-30deg,var(--theme-color)33,transparent,var(--theme-color)33)}
+.card{position:relative;padding:2px;border-radius:24px;background:linear-gradient(-30deg,var(--theme-color),transparent,var(--theme-color))}
 .inner{position:relative;width:400px;height:550px;border-radius:24px;border:2px solid var(--theme-color);background:#1a1a1a;padding:40px;display:flex;flex-direction:column;align-items:center}
 .glow{position:absolute;inset:0;border-radius:24px;border:2px solid var(--theme-color);opacity:0.6;filter:blur(4px);pointer-events:none}
 .avatar{width:120px;height:120px;border-radius:50%;border:3px solid var(--theme-color);margin:20px 0;overflow:hidden;position:relative;box-shadow:0 0 30px var(--theme-color)66}
@@ -16,7 +16,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;height:100vh;d
 .avatar canvas{display:none}
 .title{font-size:2.5em;font-weight:700;margin:10px 0;background:linear-gradient(135deg,var(--theme-color),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .desc{opacity:0.7;text-align:center;margin:10px 0}
-.friends{margin:20px 0}
+.friends{margin:20px 0;display:flex;flex-wrap:wrap;justify-content:center}
 </style>
 </head><body>
 <div class="card">
@@ -28,8 +28,8 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;height:100vh;d
       <canvas id="avatarCanvas" width="120" height="120"></canvas>
     </div>
     <div class="title">Goofy2</div>
-    <div class="desc">test2</div>
-    <div class="friends"><a href="https://xat.me/test4" target="_blank" style="margin:0 10px;font-size:1.8em;text-decoration:none">💜</a></div>
+    <div class="desc">Test5</div>
+    <a href="https://xat.me/test" target="_blank" style="margin:0 10px;font-size:20px;color:#ffffff;text-decoration:none;font-weight:600">💜</a>
   </div>
 </div>
 <script>
