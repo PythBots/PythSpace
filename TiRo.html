@@ -26,7 +26,7 @@ body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;height:100vh;d
     <div class="avatar">
       <img id="avatarImg" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" data-avatar="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif">
       <canvas id="avatarCanvas" width="120" height="120"></canvas>
-      <div class="status-dot" style="position:absolute;bottom:5px;right:5px;width:24px;height:24px;border-radius:50%;background:var(--status-color);border:3px solid #1a1a1a;box-shadow:0 0 10px var(--status-color);"></div>
+      
     </div>
     <div class="title">TiRo</div>
     <div class="desc">Living my best life doing nothing.</div>
@@ -53,14 +53,6 @@ function updateProfile() {
                 animateAvatar();
             }
             
-            
-            // Update status color based on is_online
-            console.log('Online status:', data.is_online);
-            if (data.is_online === true) {
-                document.documentElement.style.setProperty('--status-color', '#077424');
-            } else {
-                document.documentElement.style.setProperty('--status-color', '#808080');
-            }
             
         })
         .catch(err => console.error('API error:', err));
