@@ -1,64 +1,77 @@
-<!DOCTYPE html>
-<html><head>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<title>TiRo</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+<title>TiRo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--theme-color:#504949;--status-color:#808080}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.card{position:relative;padding:2px;border-radius:24px;background:linear-gradient(-30deg,var(--theme-color),transparent,var(--theme-color))}
-.inner{position:relative;width:400px;height:550px;border-radius:24px;border:2px solid var(--theme-color);background:#1a1a1a;padding:40px;display:flex;flex-direction:column;align-items:center}
-.glow{position:absolute;inset:0;border-radius:24px;border:2px solid var(--theme-color);opacity:0.6;filter:blur(4px);pointer-events:none}
-.avatar{width:120px;height:120px;border-radius:50%;margin:20px 0;overflow:hidden;position:relative;border:3px solid var(--theme-color);box-shadow:0 0 30px var(--theme-color)66;}
-.avatar img,.avatar canvas{width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0}
-.avatar canvas{display:none}
-.title{font-size:2.5em;font-weight:700;margin:10px 0;background:linear-gradient(135deg,var(--theme-color),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.desc{opacity:0.7;text-align:center;margin:10px 0;white-space: pre-line;}
-.friends{margin:20px 0;display:flex;flex-wrap:wrap;justify-content:center}
-</style>
-</head><body>
-<div class="card">
-  <div class="inner">
-    <div class="glow"></div>
-    <img src="https://xatimg.com/image/TGrnDceu0BiF.gif" style="width:100%;height:120px;object-fit:cover;border-radius:16px;margin-bottom:-60px">
-    <div class="avatar">
-      <img id="avatarImg" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" data-avatar="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif">
-      <canvas id="avatarCanvas" width="120" height="120"></canvas>
-      
-    </div>
-    <div class="title">TiRo</div>
-    <div class="desc">Living my best life doing nothing.</div>
-    <div class="friends"><a href="https://xat.me/Nicholas" target="_blank" style="margin:0 10px;font-size:12px;color:#636363;text-decoration:none;font-weight:600">BFF</a></div>
-  </div>
-</div>
-<script>
-function isSpriteSheet(img){return img.naturalWidth>img.naturalHeight&&img.naturalWidth%img.naturalHeight===0}
-function animateAvatar(){const img=document.getElementById('avatarImg');const canvas=document.getElementById('avatarCanvas');if(!img||!canvas)return;const url=img.getAttribute('data-avatar');img.onload=function(){if(/\.gif$/i.test(url)||(img.naturalHeight===img.naturalWidth&&img.naturalHeight<=1758)){img.style.display='block';canvas.style.display='none';if(window.avatarTimer)clearInterval(window.avatarTimer)}else if(isSpriteSheet(img)){img.style.display='none';canvas.style.display='block';const frameSize=img.naturalHeight;const frameCount=img.naturalWidth/frameSize;let frame=0;const ctx=canvas.getContext('2d');if(window.avatarTimer)clearInterval(window.avatarTimer);function drawFrame(){ctx.clearRect(0,0,120,120);ctx.drawImage(img,frame*frameSize,0,frameSize,frameSize,0,0,120,120);frame=(frame+1)%frameCount}drawFrame();window.avatarTimer=setInterval(drawFrame,140)}else{img.style.display='block';canvas.style.display='none';if(window.avatarTimer)clearInterval(window.avatarTimer)}};img.src=url}
-animateAvatar();
-
-function updateProfile() {
-    fetch('https://pythbots.com/api/userinfo.php?user=TiRo')
-        .then(r => r.json())
-        .then(data => {
-            console.log('API Response:', data);
-            
-            const img = document.getElementById('avatarImg');
-            if (data.avatar) {
-                // Split by # and take first URL
-                const avatarUrl = data.avatar.split('#')[0];
-                console.log('Avatar URL:', avatarUrl);
-                img.setAttribute('data-avatar', avatarUrl);
-                animateAvatar();
-            }
-            
-            
-        })
-        .catch(err => console.error('API error:', err));
+:root{
+--accent:#dd8448;
+--accent2:#ffb37d;
+--bg:#1b1220;
+--text:#fff7f0;
+--muted:#d8c7b9;
+--card:rgba(255,255,255,0.07);
+--line:rgba(255,255,255,0.14);
+--radius:24px;
+--shadow:0 30px 60px rgba(0,0,0,.25);
+--blur:14px;
 }
-updateProfile();
-setInterval(updateProfile, 30000);
+*{box-sizing:border-box} html,body{margin:0;padding:0;min-height:100%}
+body{font-family:"Poppins",sans-serif;color:var(--text);background:
+radial-gradient(circle at top left, rgba(124,92,255,.28), transparent 35%),
+radial-gradient(circle at top right, rgba(53,208,255,.20), transparent 30%),
+linear-gradient(180deg, #08101f, var(--bg));}
+a{color:inherit;text-decoration:none}.page{max-width:1180px;margin:0 auto;padding:28px 18px 34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);backdrop-filter:blur(var(--blur));box-shadow:var(--shadow)}
+.hero{overflow:hidden;position:relative;padding-bottom:16px}.banner{position:relative;height:260px;background:
+linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.48)),url("https://xatimg.com/image/TGrnDceu0BiF.gif") center/cover no-repeat}
+.profileMain{position:relative;padding:0 24px;margin-top:-66px}.topRow{display:flex;align-items:end;gap:18px;flex-wrap:wrap}
+.avatarWrap{position:relative;width:116px;height:116px;flex:0 0 116px}
+.avatar{width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid rgba(255,255,255,.95);background:#111827;box-shadow:0 0 0 8px rgba(124,92,255,.20),0 0 40px rgba(124,92,255,.35);}
+.statusDot{position:absolute;right:8px;bottom:8px;width:18px;height:18px;border-radius:50%;background:#077424;border:3px solid #fff;box-shadow:0 0 16px rgba(0,0,0,.25)}
+.statusRing{position:absolute;inset:-4px;border-radius:50%;border:4px solid #077424;pointer-events:none}
+.identity{flex:1;min-width:240px;padding-bottom:8px}.title{margin:0;font-size:42px;line-height:1;font-weight:800;letter-spacing:-.035em;text-shadow:0 10px 30px rgba(0,0,0,.22)}
+.subtitle{margin-top:8px;color:var(--muted);font-size:16px;font-weight:600}.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:13px;color:#eef3ff;font-weight:700}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.badge{padding:8px 12px;border-radius:999px;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.desc{margin-top:16px;color:#f1f5ff;font-size:16px;line-height:1.72;max-width:920px}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:16px}.grid.compact{grid-template-columns:1fr}.grid.split{grid-template-columns:1fr 1fr}.stack{display:grid;gap:16px}
+.sectionCard{padding:18px}.sectionTitle{font-size:15px;font-weight:800;margin:0 0 14px 0;color:#fff;letter-spacing:.01em}.statsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:16px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}.statValue{font-size:28px;font-weight:800;line-height:1;color:#fff}.statLabel{margin-top:8px;font-size:13px;color:var(--muted);font-weight:700}
+.linkList,.socialList{display:grid;gap:10px}.bigLink{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.friendsWrap{display:flex;flex-wrap:wrap;gap:10px}.friendPill{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-weight:700}
+.galleryGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.galleryItem{overflow:hidden;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}.galleryItem img{width:100%;height:210px;display:block;object-fit:cover;background:#101827}.galleryBody{padding:12px}.galleryTitle{font-weight:800}.galleryDesc{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.55}.musicBox iframe{width:100%;height:180px;border:none;border-radius:18px;background:#0f172a}.footer{margin-top:18px;padding:18px 20px;text-align:center;color:var(--muted);font-weight:700}
+@media (max-width:900px){.grid,.grid.split{grid-template-columns:1fr}.statsGrid{grid-template-columns:1fr}.galleryGrid{grid-template-columns:1fr}.profileMain{padding:0 16px}.title{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="page">
+    <section class="card hero">
+        <div class="banner"></div>
+        <div class="profileMain">
+            <div class="topRow">
+                <div class="avatarWrap">
+                    <img class="avatar" src="https://xatimg.com/image/jjacEq4LhxrA.png" alt="Avatar">
+                                                        </div>
+                <div class="identity">
+                    <h1 class="title">TiRo</h1>
+                    <div class="subtitle">Welcome to my xatspace</div>                    <div class="meta">
+                        <span class="chip">@TiRo</span>
+                        <span class="chip">ID 221192</span>
+                                                                                            </div>
+                                        <div class="badges"><span class="badge">VIP</span><span class="badge">Designer</span></div>
+                                        <div class="desc">Living my best life doing nothing.</div>                                    </div>
+            </div>
+        </div>
+    </section>
 
-</script>
-</body></html>
+    <div class="grid">
+        <div class="stack">
+                                    <section class="card sectionCard"><h3 class="sectionTitle">About Me</h3><div style="line-height:1.7;color:#eef3ff">Write something cool here.</div></section>
+                                            </div>
+        <div class="stack">
+                                                                    </div>
+    </div>
+    </div>
+</body>
+</html>
